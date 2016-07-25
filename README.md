@@ -1,5 +1,5 @@
 ## CNN for Chinese Text Classification in Tensorflow
-Sentiment classification forked from [dennybritz/cnn-text-classification-tf](https://github.com/dennybritz/cnn-text-classification-tf), make the data helper supports Chinese language and modified the embedding from word-level to character-level, though that increased vocabulary size, and also implemented the [Character-Aware Neural Language Models](http://arxiv.org/pdf/1508.06615v4.pdf) network structure which CNN + Highway network to improve the performance, this version can achieve an accuracy of 98% with the Chinese corpus
+Sentiment classification forked from [dennybritz/cnn-text-classification-tf](https://github.com/dennybritz/cnn-text-classification-tf), make the data helper supports Chinese language and modified the embedding from word-level to character-level, though that increased vocabulary size, and also i've implemented the [Character-Aware Neural Language Models](http://arxiv.org/pdf/1508.06615v4.pdf) network structure which CNN + Highway network to improve the performance, this version can achieve an accuracy of 98% with the Chinese corpus
 
 
 **[This code belongs to the "Implementing a CNN for Text Classification in Tensorflow" blog post.](http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/)**
