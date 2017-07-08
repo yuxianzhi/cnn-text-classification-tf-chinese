@@ -1,4 +1,6 @@
 import tensorflow as tf
+#from tensorflow.python.ops import rnn_cell_impl
+import _linear
 
 # highway layer that borrowed from https://github.com/carpedm20/lstm-char-cnn-tensorflow
 def highway(input_, size, layer_size=1, bias=-2, f=tf.nn.relu):
@@ -10,10 +12,11 @@ def highway(input_, size, layer_size=1, bias=-2, f=tf.nn.relu):
   """
   output = input_
   for idx in xrange(layer_size):
-    output = f(tf.nn.rnn_cell._linear(output, size, 0, scope='output_lin_%d' % idx))
+    output = f(_linear._linear(output, size, 0, scope='output_lin_%d' % idx))
 
     transform_gate = tf.sigmoid(
-      tf.nn.rnn_cell._linear(input_, size, 0, scope='transform_lin_%d' % idx) + bias)
+      _linear._linear(input_, size, 0, scope='transform_lin_%d' % idx) + bias)
+
     carry_gate = 1. - transform_gate
 
     output = transform_gate * output + carry_gate * input_
@@ -72,7 +75,7 @@ class TextCNN(object):
 
       # Combine all the pooled features
       num_filters_total = sum(num_filters)
-      self.h_pool = tf.concat(3, pooled_outputs)
+      self.h_pool = tf.concat(axis=3, values=pooled_outputs)
       self.h_pool_flat = tf.reshape(self.h_pool, [-1, num_filters_total])
 
       # Add highway
@@ -94,7 +97,7 @@ class TextCNN(object):
 
       # CalculateMean cross-entropy loss
       with tf.name_scope("loss"):
-        losses = tf.nn.softmax_cross_entropy_with_logits(self.scores, self.input_y)
+        losses = tf.nn.softmax_cross_entropy_with_logits(logits=self.scores, labels=self.input_y)
         self.loss = tf.reduce_mean(losses) + l2_reg_lambda * l2_loss
 
       # Accuracy

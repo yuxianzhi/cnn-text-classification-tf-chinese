@@ -9,7 +9,7 @@ It is slightly simplified implementation of Kim's [Convolutional Neural Networks
 ## Requirements
 
 - Python 2.7
-- Tensorflow 0.9.0
+- Tensorflow 1.2.0
 - Numpy
 
 ## Running
