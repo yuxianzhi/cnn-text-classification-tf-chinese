@@ -12,6 +12,12 @@ It is slightly simplified implementation of Kim's [Convolutional Neural Networks
 - Tensorflow 1.2.0
 - Numpy
 
+You can directly use 
+
+```
+pip install -r requirements.txt
+```
+
 ## Running
 
 Print parameters:
